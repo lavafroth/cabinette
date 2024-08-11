@@ -1,0 +1,9 @@
+name: fucknvidia
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python >=3.11
+  - pytorch::pytorch=*=*cuda*
+  - cudatoolkit
+  - cudnn
