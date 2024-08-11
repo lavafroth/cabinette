@@ -1,0 +1,18 @@
+[package]
+name = "cabinette"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.86"
+candle-core = "0.3"
+candle-nn = "0.3"
+candle-transformers = "0.3"
+serde = "1.0"
+serde_json = "1.0"
+tokenizers = "0.13"
+candle-token-classification = { git = "https://github.com/nicksenger/candle-token-classification", version = "0.1.0" }
+clap = { version = "4.5.15", features = ["derive"] }
+tracing-chrome = "0.7.2"
+tracing-subscriber = "0.3.18"
+itertools = "0.13.0"
