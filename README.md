@@ -21,12 +21,16 @@ Run `nix develop`
 ### Train the model
 
 The weights are not released yet because I haven't annotated all of the dataset.
-With every model being ~450MiB, I really don't want to speedrun getting the repo
-to weigh 2 GiB in 5 commits.
+With every model being ~450MiB, I don't want to speedrun the repo to weigh 2 GiB
+in 5 commits.
 
 That means you have to train the model yourself for now.
 - Make sure to have CUDA.
-- Install the dependencies from the `micromamba.yml` file.
+- Create an environment with micromamba  
+```sh
+micromamba create -n cabinette -f micromamba.yml
+micromamba activate cabinette
+```
 - Run `jupyter-lab`.
 - Open the `bert_named_entity_recongition.ipynb` notebook.
 - Run all the cells.
