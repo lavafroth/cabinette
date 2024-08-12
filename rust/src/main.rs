@@ -4,12 +4,11 @@ use candle_transformers::models::bert::DTYPE;
 use itertools::Itertools;
 
 use anyhow::{Error as E, Result};
-use candle_core::Tensor;
 use candle_nn::VarBuilder;
 use candle_token_classification::BertLikeTokenClassificationHead; // Import the token classifier trait from this library
 use candle_token_classification::BertTokenClassificationHead;
 use clap::Parser;
-use tokenizers::{PaddingParams, Tokenizer, TruncationParams}; // Import the concrete classifier (BERT & ELECTRA are provided)
+use tokenizers::Tokenizer;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -29,12 +28,19 @@ impl Args {
     ) -> Result<(BertTokenClassificationHead, Tokenizer, Vec<String>)> {
         let device = candle_core::Device::Cpu;
 
-        let (config_filename, tokenizer_filename, weights_filename) = {
-            let config = Path::new("../trained_v1_safetensors/config.json");
-            let tokenizer = Path::new("../trained_v1_safetensors/tokenizer.json");
-            let weights = Path::new("../trained_v1_safetensors/model.safetensors");
-            (config, tokenizer, weights)
+        let Some(model_dir) = glob::glob("../trained_v*_safetensors")?
+            .into_iter()
+            .next()
+            .and_then(|path| path.ok())
+        else {
+            return Err(E::msg(
+                "unable to find any model directory matching \"trained_v*_safetensors\"",
+            ));
         };
+        let config_filename = model_dir.join("config.json");
+        let tokenizer_filename = model_dir.join("tokenizer.json");
+        let weights_filename = model_dir.join("model.safetensors");
+
         let config = std::fs::read_to_string(config_filename)?;
         let config = serde_json::from_str(&config)?;
         let tokenizer = Tokenizer::from_file(tokenizer_filename).map_err(E::msg)?;
@@ -49,7 +55,7 @@ impl Args {
             .iter()
             .sorted_by_key(|(i, _)| *i)
             .map(|(_, label)| label.to_string())
-            .collect::<Vec<_>>();
+            .collect();
 
         Ok((classifier, tokenizer, labels))
     }
@@ -72,19 +78,6 @@ fn main() -> Result<()> {
     let (model, tokenizer, labels) = args.build_model_and_tokenizer()?;
 
     if let Some(prompt) = args.prompt {
-        // let tokenizer = tokenizer
-        //     .with_padding(Some(PaddingParams {
-        //         strategy: tokenizers::PaddingStrategy::Fixed(128),
-        //         pad_token: "[PAD]".to_string(),
-        //         ..Default::default()
-        //     }))
-        //     .with_truncation(Some(TruncationParams {
-        //         max_length: 128,
-        //         strategy: tokenizers::TruncationStrategy::OnlyFirst,
-        //         ..Default::default()
-        //     }))
-        //     .map_err(E::msg)?;
-
         let output = model.classify(
             // classify some text (or use `model.forward` to get the output tensor)
             &prompt,
