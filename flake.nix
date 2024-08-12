@@ -18,8 +18,6 @@
             ncurses5 stdenv.cc binutils
             ffmpeg
             fish
-            pkg-config
-            openssl.dev
             micromamba
           ]);
 

@@ -10,8 +10,8 @@ candle-nn = "0.3"
 candle-transformers = "0.3"
 serde = "1.0"
 serde_json = "1.0"
-tokenizers = "0.13"
-candle-token-classification = { git = "https://github.com/nicksenger/candle-token-classification", version = "0.1.0" }
+tokenizers = "0.20"
+candle-token-classification = { git = "https://github.com/lavafroth/candle-token-classification", branch = "bump-tokenizers"}
 clap = { version = "4.5.15", features = ["derive"] }
 tracing-chrome = "0.7.2"
 tracing-subscriber = "0.3.18"
