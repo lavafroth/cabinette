@@ -6,7 +6,7 @@ A WIP ingredient inventory management app with an actually useful AI.
 
 In terms of decreasing priority.
 
-- [ ] WebUI
+- [ ] WebUI (work in progress)
 - [ ] Release weights
 - [ ] Unified UI in Dart
 - [ ] Static builds

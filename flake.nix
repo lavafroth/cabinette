@@ -18,7 +18,10 @@
             ncurses5 stdenv.cc binutils
             ffmpeg
             fish
+            tailwindcss
+            vscode-langservers-extracted
             micromamba
+            live-server
           ]);
 
           profile = ''
