@@ -1,12 +1,8 @@
-use std::path::Path;
-
-use candle_transformers::models::bert::DTYPE;
-use itertools::Itertools;
-
 use anyhow::{Error as E, Result};
 use candle_nn::VarBuilder;
 use candle_token_classification::BertLikeTokenClassificationHead; // Import the token classifier trait from this library
 use candle_token_classification::BertTokenClassificationHead;
+use candle_transformers::models::bert::DTYPE;
 use clap::Parser;
 use tokenizers::Tokenizer;
 
@@ -50,12 +46,7 @@ impl Args {
         let classifier = BertTokenClassificationHead::load(vb, &config)?;
 
         // create an ordered list of labels for the chosen classifier
-        let labels = config
-            .id2label
-            .iter()
-            .sorted_by_key(|(i, _)| *i)
-            .map(|(_, label)| label.to_string())
-            .collect();
+        let labels = config.id2label.values().cloned().collect();
 
         Ok((classifier, tokenizer, labels))
     }
