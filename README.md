@@ -7,11 +7,14 @@ A WIP ingredient inventory management app with an actually useful AI.
 In terms of decreasing priority.
 
 - [ ] Release weights
-- [ ] Unified UI in Dart
+- [x] Unified UI
 - [ ] Static builds
 - [ ] Streamline training pipeline
 
 # UI (WIP)
+
+We're using Tauri to package very minimal HTML, TailwindCSS and bits of ECMAScript
+into a desktop app (and a mobile app in the future).
 
 ![dark](/assets/dark.png)
 ![light](/assets/light.png)
@@ -41,6 +44,8 @@ micromamba activate cabinette
 - You now have a directory called trained_v`X`_safetensors where `X` is some version.
 
 ### Performing inference in Rust
+
+> Note: This section is outdated for the latest commit. We'll update this soon!
 
 - Change into the `rust` directory
 - Execute `cargo r -- --prompt` followed by your prompt.
