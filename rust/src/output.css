@@ -585,6 +585,10 @@ video {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -592,6 +596,46 @@ video {
 
 .bottom-0 {
   bottom: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.right-5 {
+  right: 1.25rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
+.top-8 {
+  top: 2rem;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
+.top-2 {
+  top: 0.5rem;
+}
+
+.top-7 {
+  top: 1.75rem;
+}
+
+.right-10 {
+  right: 2.5rem;
+}
+
+.right-7 {
+  right: 1.75rem;
+}
+
+.top-6 {
+  top: 1.5rem;
 }
 
 .mx-4 {
@@ -607,12 +651,53 @@ video {
   margin-top: 1rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .flex {
   display: flex;
 }
 
+.size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
 .h-full {
   height: 100%;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .flex-1 {
@@ -642,6 +727,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {
@@ -683,6 +772,30 @@ video {
 
 .bg-slate-200\/40 {
   background-color: rgb(226 232 240 / 0.4);
+}
+
+.fill-current {
+  fill: currentColor;
+}
+
+.fill-lime-400 {
+  fill: #a3e635;
+}
+
+.fill-lime-600 {
+  fill: #65a30d;
+}
+
+.fill-lime-500 {
+  fill: #84cc16;
+}
+
+.stroke-lime-400 {
+  stroke: #a3e635;
+}
+
+.stroke-lime-500 {
+  stroke: #84cc16;
 }
 
 .p-2 {
@@ -841,6 +954,14 @@ video {
     background-color: rgb(15 23 42 / 0.4);
   }
 
+  .dark\:fill-lime-400 {
+    fill: #a3e635;
+  }
+
+  .dark\:stroke-lime-400 {
+    stroke: #a3e635;
+  }
+
   .dark\:text-lime-800 {
     --tw-text-opacity: 1;
     color: rgb(63 98 18 / var(--tw-text-opacity));
@@ -853,6 +974,26 @@ video {
 
   .dark\:shadow-slate-700\/80 {
     --tw-shadow-color: rgb(51 65 85 / 0.8);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .dark\:shadow-slate-500\/80 {
+    --tw-shadow-color: rgb(100 116 139 / 0.8);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .dark\:shadow-slate-900\/80 {
+    --tw-shadow-color: rgb(15 23 42 / 0.8);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .dark\:shadow-slate-700\/20 {
+    --tw-shadow-color: rgb(51 65 85 / 0.2);
+    --tw-shadow: var(--tw-shadow-colored);
+  }
+
+  .dark\:shadow-slate-700\/40 {
+    --tw-shadow-color: rgb(51 65 85 / 0.4);
     --tw-shadow: var(--tw-shadow-colored);
   }
 

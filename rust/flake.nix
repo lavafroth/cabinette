@@ -19,6 +19,10 @@
               webkitgtk
               librsvg
               cargo-tauri
+
+              # dev tools for frontend
+              tailwindcss
+              vscode-langservers-extracted
             ];
             libraries = with pkgs; [
               stdenv.cc.cc.lib
@@ -30,10 +34,6 @@
               dbus
               openssl
               librsvg
-
-              # dev tools for frontend
-              tailwindcss
-              vscode-langservers-extracted
             ];
 
             LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath libraries}";
