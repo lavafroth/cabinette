@@ -46,15 +46,13 @@ micromamba activate cabinette
 ### Performing inference in Rust
 
 - Change into the `rust` directory
-- Execute `cargo tauri dev -- -- --prompt` followed by your prompt.
+- Execute `cargo tauri dev`
+- Click on the plus icon in the top right (or bottom right on mobile devices)
+- Type your recipe instructions in the text area
 
-Example:
+You will now see the inference from the text in the top bar.
 
-```sh
-cargo tauri dev -- -- --prompt "I will bake a cake with those eggs."
-```
-
-Results in the following:
+For example, "I will bake a cake with those eggs" results in the following:
  
 ```ron
 [
