@@ -5,17 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
+
+  <script src="main.js" type="text/javascript"></script>
 </head>
 
-<body class="h-full dark:bg-slate-900 bg-slate-200 md:relative">
-  <div class="flex justify-center p-4 gap-x-2
+<body class="dark:bg-slate-900 bg-slate-200">
+  <div id="main-page" class="h-full absolute overflow-scroll w-full m-fadeIn">
+    <div class="flex justify-center p-4 gap-x-2
   md:sticky md:top-0
   fixed bottom-0 inset-x-0
   bg-slate-200/40 dark:bg-slate-900/40
   md:border-b-2 border-t-2
   border-slate-300 dark:border-slate-700
   backdrop-blur-md">
-    <div class="
+      <div class="
         p-2 flex-1
         flex
         bg-slate-100 dark:bg-slate-800
@@ -34,7 +37,7 @@
         duration-500
         gap-5
       ">
-      <input type="text" class="
+        <input type="text" class="
         py-2 px-6 flex-1
         bg-slate-100 dark:bg-slate-800
         border-slate-300 dark:border-slate-700
@@ -42,20 +45,20 @@
         text-slate-800 dark:text-slate-300
         " placeholder="search ingredients"></input>
 
-      <button class="py-2 px-6
+        <button class="py-2 px-6
         md:rounded-full rounded-xl
         bg-lime-300 dark:bg-lime-500
         text-lime-700
         dark:text-lime-800
         border-lime-400 dark:border-lime-600 border-b-2
-        hover:shadow-md hover:shadow-lime-400/30
+        hover:shadow-md hover:shadow-lime-400/10
         focus:outline-none outline-none
-        transition
-        duration-500
+        transition-all
+        active:border-b-0 active:border-t-2 duration-100
       ">search</button>
-    </div>
+      </div>
 
-    <div class="
+      <div id="plus-icon" class="
     absolute right-7 top-6 w-12 h-12
         bg-slate-100 dark:bg-slate-800
         border-slate-300 dark:border-slate-700
@@ -63,32 +66,91 @@
         rounded-full
         border border-b-2
         flex justify-center
+        active:scale-95 active:border-b duration-100
+        transition-all
     ">
-      <svg class="stroke-lime-500 dark:stroke-lime-400 fill-current w-8" xmlns="http://www.w3.org/2000/svg" fill="none"
-        viewBox="0 0 24 24" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-      </svg>
+        <svg class="stroke-lime-500 dark:stroke-lime-400 fill-current w-8" xmlns="http://www.w3.org/2000/svg"
+          fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </div>
+    </div>
+
+
+    <div class="flex flex-col gap-4 mt-4 mb-6 md:mx-10 mx-4">
+
+      <div class="card">benene</div>
+      <div class="card">owenge</div>
+      <div class="card">deez</div>
+      <div class="card">peanuts</div>
+      <div class="card">sour cream</div>
+      <div class="card">paprika</div>
+      <div class="card">pineapple</div>
+      <div class="card">corn</div>
+      <div class="card">flour</div>
+      <div class="card">eggs</div>
+      <div class="card">tomato</div>
+      <div class="card">garlic</div>
     </div>
   </div>
 
+  <div id="edit-page" class="h-full w-full m-fadeOut absolute top-0 flex flex-col">
+    <div class="flex justify-center p-4 gap-x-2
+                order-last md:order-first
+                bg-slate-200/40 dark:bg-slate-900/40
+                md:border-b-2 border-t-2
+                border-slate-300 dark:border-slate-700">
+      <input type="text" class="
+        py-2 px-6 flex-1
+        bg-slate-200 dark:bg-slate-900
+        text-xl font-medium
+        border-slate-300 dark:border-slate-700
+        focus:outline-none outline-none
+        text-slate-800 dark:text-slate-300
+        " placeholder="Name your recipe ..."></input>
 
-  <div class="flex flex-col gap-4 mt-4 mb-6 md:mx-10 mx-4">
+      <div id="discard-icon" class="
+        w-12 h-12
+        bg-slate-100 dark:bg-slate-800
+        border-slate-300 dark:border-slate-700
+        shadow-sm dark:shadow-slate-700/40
+        rounded-full
+        border border-b-2
+        flex justify-center
+        active:scale-95 active:border-b duration-100
+        transition-all
+    ">
+        <svg class="stroke-lime-500 dark:stroke-lime-400 w-8" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </div>
 
-    <div class="card">benene</div>
-    <div class="card">owenge</div>
-    <div class="card">deez</div>
-    <div class="card">peanuts</div>
-    <div class="card">sour cream</div>
-    <div class="card">paprika</div>
-    <div class="card">pineapple</div>
-    <div class="card">corn</div>
-    <div class="card">flour</div>
-    <div class="card">eggs</div>
-    <div class="card">tomato</div>
-    <div class="card">garlic</div>
+      <div id="create-icon" class="
+    w-12 h-12
+        bg-slate-100 dark:bg-slate-800
+        border-slate-300 dark:border-slate-700
+        shadow-sm dark:shadow-slate-700/40
+        rounded-full
+        border border-b-2
+        flex justify-center
+        active:scale-95 active:border-b duration-100
+        transition-all
+    ">
+        <svg class="stroke-lime-500 dark:stroke-lime-400 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+        </svg>
+      </div>
+
+    </div>
+    <div id="chiplets" class="h-10 flex dark:text-white">
+    </div>
+
+    <textarea id="recipe-instructions"
+      class="w-auto resize-none h-full bg-slate-100 dark:bg-slate-800 dark:text-white p-4 rounded-xl"></textarea>
+
   </div>
-
-
 </body>
 
 </html>
