@@ -3,27 +3,42 @@ const { invoke } = window.__TAURI__.tauri;
 let greetInputEl;
 let greetMsgEl;
 
+function generateElements(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html.trim();
+  return template.content.children;
+}
+
 async function infer(text) {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  chipletsEl.textContent = await invoke("infer", { contents: text });
+  let raw_inference = await invoke("infer", { contents: text });
+  let inference = JSON.parse(raw_inference);
+  chipletsEl = document.querySelector("#chiplets");
+  chiplets = inference.map((i) => generateElements(`<div class="chiplet">${i}</div>`)[0]);
+  console.log(chiplets);
+  chipletsEl.replaceChildren(...chiplets);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   chipletsEl = document.querySelector("#chiplets");
-  // greetMsgEl = document.querySelector("#greet-msg");
-  // document.querySelector("#greet-form").addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   greet();
-  // });
 
   const plusIconEl = document.querySelector('#plus-icon');
   const mainPageEl = document.querySelector('#main-page');
   const editPageEl = document.querySelector('#edit-page');
+  const discardIconEl = document.querySelector('#discard-icon');
+
   plusIconEl.addEventListener('click', (e) => {
     mainPageEl.classList.toggle('m-fadeOut');
     mainPageEl.classList.toggle('m-fadeIn');
     editPageEl.classList.toggle('m-fadeIn');
     editPageEl.classList.toggle('m-fadeOut');
+  });
+
+  discardIconEl.addEventListener('click', (e) => {
+    editPageEl.classList.toggle('m-fadeOut');
+    editPageEl.classList.toggle('m-fadeIn');
+    mainPageEl.classList.toggle('m-fadeIn');
+    mainPageEl.classList.toggle('m-fadeOut');
   });
 
   let timer;

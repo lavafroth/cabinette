@@ -2,8 +2,9 @@
 
 use anyhow::{Error as E, Result};
 use candle_nn::VarBuilder;
-use candle_token_classification::BertLikeTokenClassificationHead; // Import the token classifier trait from this library
+use candle_token_classification::BertLikeTokenClassificationHead;
 use candle_token_classification::BertTokenClassificationHead;
+use candle_token_classification::BILOU;
 use candle_transformers::models::bert::DTYPE;
 use std::sync::OnceLock;
 use tokenizers::Tokenizer;
@@ -13,7 +14,8 @@ static MODEL: OnceLock<ModelWithParams> = OnceLock::new();
 #[tauri::command]
 fn infer(contents: &str) -> String {
     let model = MODEL.get().unwrap();
-    let output = model
+    println!("{contents}");
+    let entity_groups = model
         .model
         .classify(
             contents,
@@ -22,7 +24,16 @@ fn infer(contents: &str) -> String {
             &model.model.device,
         )
         .unwrap();
-    format!("{:?}", output)
+
+    println!("{:?}", entity_groups);
+
+    let outputs: Vec<_> = entity_groups
+        .into_iter()
+        .filter_map(|eg| (eg.label != BILOU::I("O".to_string())).then_some(eg.text))
+        // TODO: remove this collect
+        .collect();
+
+    format!("{:?}", outputs)
 }
 
 pub struct ModelWithParams {
