@@ -15,7 +15,6 @@ async function infer(text) {
   let inference = JSON.parse(raw_inference);
   chipletsEl = document.querySelector("#chiplets");
   chiplets = inference.map((i) => generateElements(`<div class="chiplet">${i}</div>`)[0]);
-  console.log(chiplets);
   chipletsEl.replaceChildren(...chiplets);
 }
 
@@ -26,6 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const mainPageEl = document.querySelector('#main-page');
   const editPageEl = document.querySelector('#edit-page');
   const discardIconEl = document.querySelector('#discard-icon');
+  const createIconEl = document.querySelector('#create-icon');
+  const recipeNameEl = document.querySelector('#recipe-name');
 
   plusIconEl.addEventListener('click', (e) => {
     mainPageEl.classList.toggle('m-fadeOut');
@@ -50,5 +51,13 @@ window.addEventListener("DOMContentLoaded", () => {
     timer = setTimeout(() => {
       infer(text);
     }, waitTime);
+  })
+
+  createIconEl.addEventListener('click', (e) => {
+    editPageEl.classList.toggle('m-fadeOut');
+    editPageEl.classList.toggle('m-fadeIn');
+    mainPageEl.classList.toggle('m-fadeIn');
+    mainPageEl.classList.toggle('m-fadeOut');
+    console.log(`${recipeNameEl.value} ${recipeInstEl.value}`);
   })
 });
