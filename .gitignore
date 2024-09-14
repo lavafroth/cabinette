@@ -1,2 +1,4 @@
 trained*safetensors
 rust/target
+.ipynb_checkpoints
+.virtual_documents
