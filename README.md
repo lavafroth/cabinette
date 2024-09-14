@@ -21,23 +21,17 @@ into a desktop app (and a mobile app in the future).
 
 ## Try it out
 
-### Steps for Nix users only
+### Development
 
-Run `nix develop`
+Using Nix is the officially supported way of development. We use direnv to automatically
+enable a flake when entering the project directory. Make sure to have nix and direnv. Then run
+
+```
+direnv allow
+```
 
 ### Train the model
 
-The weights are not released yet because I haven't annotated all of the dataset.
-With every model being ~450MiB, I don't want to speedrun the repo to weigh 2 GiB
-in 5 commits.
-
-That means you have to train the model yourself for now.
-- Make sure to have CUDA.
-- Create an environment with micromamba  
-```sh
-micromamba create -n cabinette -f micromamba.yml
-micromamba activate cabinette
-```
 - Run `jupyter-lab`.
 - Open the `bert_named_entity_recongition.ipynb` notebook.
 - Run all the cells.
