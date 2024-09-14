@@ -13,13 +13,22 @@ async function infer(text) {
   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
   let raw_inference = await invoke("infer", { contents: text });
   let inference = JSON.parse(raw_inference);
-  chipletsEl = document.querySelector("#chiplets");
-  chiplets = inference.map((i) => generateElements(`<div class="chiplet">${i}</div>`)[0]);
+  let chipletsEl = document.querySelector("#chiplets");
+  let chiplets = inference.map((i) => generateElements(`<div class="chiplet">${i}</div>`)[0]);
   chipletsEl.replaceChildren(...chiplets);
 }
 
+async function ingredients(filter = null) {
+  var ingrs_raw = await invoke("ingredients");
+  if (filter !== null) {
+    ingrs_raw = ingrs_raw.filter((i) => i.includes(filter));
+  }
+  let ingredientsEl = document.querySelector("#ingredients");
+  let ingrs = ingrs_raw.map((i) => generateElements(`<div class="card">${i}</div>`)[0]);
+  ingredientsEl.replaceChildren(...ingrs);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  chipletsEl = document.querySelector("#chiplets");
 
   const plusIconEl = document.querySelector('#plus-icon');
   const mainPageEl = document.querySelector('#main-page');
@@ -27,6 +36,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const discardIconEl = document.querySelector('#discard-icon');
   const createIconEl = document.querySelector('#create-icon');
   const recipeNameEl = document.querySelector('#recipe-name');
+
+  ingredients();
+
+  const searchBoxEl = document.querySelector('#search');
+  searchBoxEl.addEventListener('keyup',(e)=>{
+    ingredients(e.target.value)
+  });
 
   plusIconEl.addEventListener('click', (e) => {
     mainPageEl.classList.toggle('m-fadeOut');
